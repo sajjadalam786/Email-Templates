@@ -16,10 +16,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="x-apple-disable-message-reformatting" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="color-scheme" content="light only" />
+  <meta name="supported-color-schemes" content="light only" />
   <title>PETTORQUE - Engineered Bolting Solutions for Critical Applications</title>
 
   <style type="text/css">
     /* Client-specific Resets */
+    :root {
+      color-scheme: light only;
+      supported-color-schemes: light only;
+    }
+
     body,
     table,
     td,
@@ -42,6 +49,7 @@
       outline: none;
       text-decoration: none;
       display: block;
+      max-width: 100%;
     }
 
     table {
@@ -53,9 +61,8 @@
       margin: 0 !important;
       padding: 0 !important;
       width: 100% !important;
-      background-color: #F5F5F5;
+      background-color: #FFF5EF;
       font-family: Arial, Helvetica, sans-serif;
-      overflow-x: hidden !important;
     }
 
     /* iOS Blue Links Reset */
@@ -68,9 +75,9 @@
       line-height: inherit !important;
     }
 
-    /* Gmail & Outlook Hover States */
-    .btn-gold:hover {
-      background-color: #E5A800 !important;
+    /* Hover States */
+    .btn-orange:hover {
+      background-color: #D1410E !important;
     }
 
     .btn-dark:hover {
@@ -78,1014 +85,931 @@
     }
 
     .product-card:hover {
-      border-color: #F4B400 !important;
-    }
-
-    /* Product card height equalization – ensures equal title height so buttons align */
-    .product-card h3 {
-      min-height: 48px;
-    }
-
-    /* Prevent images from ever overflowing */
-    img {
-      max-width: 100% !important;
+      border-color: #E9531E !important;
     }
 
     /* ============================================================
-       MOBILE: PROPORTIONAL ZOOM SCALING
-       The desktop 600px layout is preserved exactly on all mobile
-       sizes. CSS `zoom` scales BOTH visual output AND layout
-       dimensions, so no stacking, no horizontal scroll, no gaps.
-       Formula: zoom = viewport_width / 600
+       MOBILE (< 600px)
+       The container is fluid, so it always fills the screen.
+       Grid columns switch to 2 per row and feature blocks stack.
        ============================================================ */
-
     @media screen and (max-width: 599px) {
-      body {
-        overflow-x: hidden !important;
-        /* Prevent any edge-case scroll from subpixel rounding */
+      .outer-pad {
+        padding: 0 !important;
       }
 
-      /* ── Undo ALL stacking overrides from the previous ruleset ── */
-      /* Keep every element exactly as its desktop table-cell self   */
-
-      .col-stack {
-        display: table-cell !important;
-        width: auto !important;
-        max-width: none !important;
-        padding-right: 0 !important;
+      .mobile-pad {
+        padding-left: 12px !important;
+        padding-right: 12px !important;
       }
 
-      .col-stack-padding {
-        display: table-cell !important;
+      .grid-col {
         width: 50% !important;
-        max-width: none !important;
-        /* Restore inline-style padding from each td */
-        padding-left: 6px !important;
-        padding-right: 6px !important;
-        padding-bottom: 12px !important;
+        max-width: 50% !important;
       }
 
-      .col-third-stack {
-        display: table-cell !important;
-        width: 176px !important;
-        max-width: none !important;
+      .stack-col {
+        display: block !important;
+        width: 100% !important;
+        padding-left: 0 !important;
         padding-right: 0 !important;
-        padding-bottom: 10px !important;
       }
 
-      .col-half-stack {
-        display: table-cell !important;
-        width: 128px !important;
-        max-width: none !important;
-        vertical-align: top !important;
+      .hero-title {
+        font-size: 22px !important;
+        line-height: 28px !important;
       }
 
-      /* Show spacer cells (hidden on old stacking layout) */
-      .mobile-hide {
-        display: table-cell !important;
+      .section-title {
+        font-size: 19px !important;
+        line-height: 25px !important;
       }
 
-      /* Keep desktop-style padding */
-      .mobile-padding {
-        padding-left: 20px !important;
-        padding-right: 20px !important;
+      .top-bar {
+        font-size: 9px !important;
+        letter-spacing: 0 !important;
       }
 
-      .mobile-padding-inner {
-        padding: 22px 20px !important;
-      }
-
-      /* No forced centering on mobile (desktop left-align preserved) */
-      .mobile-center {
-        text-align: left !important;
-      }
-
-      .mobile-center-img {
-        margin: 0 !important;
-      }
-
-      /* Keep desktop title sizes (zoom handles the visual reduction) */
-      .mobile-title {
-        font-size: inherit !important;
-        line-height: inherit !important;
-      }
-
-      .mobile-subtitle {
-        font-size: inherit !important;
-        line-height: inherit !important;
-      }
-
-      /* Keep buttons at desktop size (zoom reduces them visually) */
       .btn-full {
-        width: auto !important;
-        display: table !important;
-        text-align: left !important;
-      }
-
-      /* Keep product card images at their fixed desktop dimensions */
-      .product-card img {
-        width: 176px !important;
-        height: 120px !important;
-        max-width: 176px !important;
-        object-fit: cover !important;
-      }
-
-      /* Keep product card h3 equalization active */
-      .product-card h3 {
-        min-height: 48px !important;
-      }
-
-      /* ── Proportional scaling via CSS zoom ──────────────────────
-         zoom shrinks BOTH rendering AND layout box, so the parent
-         td sees the correctly-sized scaled container — no overflow.
-         Default: 480-599px range → zoom = ~0.8 (480/600)
-      ──────────────────────────────────────────────────────────── */
-      .email-container {
-        zoom: 0.8;
+        width: 100% !important;
       }
     }
 
-    /* 414px – 479px  (zoom ≈ 414/600 = 0.69) */
-    @media screen and (max-width: 479px) {
-      .email-container {
-        zoom: 0.69;
-      }
-    }
-
-    /* 390px – 413px  (zoom ≈ 390/600 = 0.65) */
-    @media screen and (max-width: 413px) {
-      .email-container {
-        zoom: 0.65;
-      }
-    }
-
-    /* 375px – 389px  (zoom = 375/600 = 0.625) */
-    @media screen and (max-width: 389px) {
-      .email-container {
-        zoom: 0.625;
-      }
-    }
-
-    /* 360px – 374px  (zoom = 360/600 = 0.60) */
+    /* Narrow phones (< 375px): long product titles wrap to 4 lines,
+       so reserve 4 lines in every card to keep buttons aligned */
     @media screen and (max-width: 374px) {
-      .email-container {
-        zoom: 0.60;
-      }
-    }
-
-    /* ≤ 359px / 320px  (zoom ≈ 320/600 = 0.533) */
-    @media screen and (max-width: 359px) {
-      .email-container {
-        zoom: 0.533;
+      .product-title {
+        min-height: 64px !important;
       }
     }
   </style>
 </head>
 
-<body bgcolor="#F5F5F5"
-  style="margin: 0; padding: 0; background-color: #F5F5F5; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%;">
+<body bgcolor="#FFF5EF"
+  style="margin: 0; padding: 0; background-color: #FFF5EF; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%;">
 
   <!-- Preheader Text (Invisible preview text in email clients) -->
   <div
-    style="display: none; font-size: 1px; color: #F5F5F5; line-height: 1px; max-height: 0px; max-width: 0px; opacity: 0; overflow: hidden;">
+    style="display: none; font-size: 1px; color: #FFF5EF; line-height: 1px; max-height: 0px; max-width: 0px; opacity: 0; overflow: hidden;">
     PETTORQUE Industrial Bolting Solutions - Hydraulic Torque Wrenches, Bolt Tensioners, Power Packs &amp; Heavy-Duty
     Tools engineered for high precision.
     &nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;
   </div>
 
   <!-- Main Outer Wrapper Table -->
-  <table border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#F5F5F5"
-    style="background-color: #F5F5F5; width: 100%; margin: 0; padding: 10px 0;">
+  <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFF5EF"
+    style="background-color: #FFF5EF; width: 100%; margin: 0; padding: 0;">
     <tr>
-      <td align="center" valign="top">
+      <td align="center" valign="top" class="outer-pad" style="padding: 12px 0;">
 
-        <!-- Main Email Container (600px Centered) -->
+        <!-- Main Email Container: fluid up to 600px (fills the screen on phones) -->
         <!--[if mso]>
-        <table align="center" border="0" cellspacing="0" cellpadding="0" width="600">
+        <table role="presentation" align="center" border="0" cellspacing="0" cellpadding="0" width="600">
         <tr>
         <td align="center" valign="top" width="600">
         <![endif]-->
-        <table border="0" cellpadding="0" cellspacing="0" width="100%" class="email-container"
-          style="max-width: 600px; width: 600px; background-color: #FFFFFF; border-collapse: collapse; margin: 0 auto; box-shadow: 0 4px 12px rgba(0,0,0,0.08);">
+        <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" class="email-container"
+          style="width: 100%; max-width: 600px; background-color: #FFFFFF; margin: 0 auto;">
 
-          <!-- ==================== TOP BAR & HEADER ==================== -->
+          <!-- ==================== TOP BAR ==================== -->
           <tr>
-            <td bgcolor="#1A1A1A" style="background-color: #1A1A1A; padding: 6px 16px;">
-              <table border="0" cellpadding="0" cellspacing="0" width="100%">
-                <tr style="align-self: center;">
-                  <td align="left" class="col-stack mobile-center"
-                    style="font-family: Arial, Helvetica, sans-serif; font-size: 10px; color: #CCCCCC; text-transform: uppercase; letter-spacing: 0.5px;">
-                    Engineered Bolting Solutions for Critical Applications | ISO 9001 Certified
-                  </td>
-
-                </tr>
-              </table>
+            <td bgcolor="#1A1A1A" align="center" class="mobile-pad"
+              style="background-color: #1A1A1A; padding: 7px 20px; font-family: Arial, Helvetica, sans-serif; font-size: 10px; line-height: 14px; color: #CCCCCC; text-transform: uppercase; letter-spacing: 0.5px;">
+              <span class="top-bar">Engineered Bolting Solutions for Critical Applications | ISO 9001 Certified</span>
             </td>
           </tr>
 
-          <!-- Main Header Logo & Quick Contact Bar -->
+          <!-- ==================== LOGO HEADER ==================== -->
           <tr>
-            <td bgcolor="#FFFFFF" align="center" style="padding:20px 20px; border-bottom:3px solid #F4B400;">
-
-              <a href="https://pettorque.com/" target="_blank" style="text-decoration:none; display:inline-block;">
-
-                <img src="https://i0.wp.com/pettorque.com/wp-content/uploads/2024/08/pettorque-logo-4-2.png"
-                  alt="PETTORQUE Logo" width="180" style="display:block;
-                        margin:0 auto;
-                        width:180px;
-                        max-width:180px;
-                        height:auto;
-                        border:0;">
-
+            <td bgcolor="#FFFFFF" align="center" style="background-color: #FFFFFF; padding: 20px; border-bottom: 3px solid #E9531E;">
+              <a href="https://pettorque.com/" target="_blank" style="text-decoration: none; display: inline-block;">
+                <img src="https://pettorque.com/wp-content/uploads/2026/10/Perfect-Logo.png"
+                  alt="PETTORQUE Logo" width="180"
+                  style="display: block; margin: 0 auto; width: 180px; max-width: 180px; height: auto; border: 0;" />
               </a>
-
             </td>
           </tr>
 
           <!-- ==================== HERO SECTION ==================== -->
           <tr>
-            <td bgcolor="#1A1A1A"
-              style="background-color: #1A1A1A; padding: 22px 20px 22px 20px; border-bottom: 4px solid #F4B400;"
-              class="mobile-padding-inner">
-              <table border="0" cellpadding="0" cellspacing="0" width="100%">
+            <td bgcolor="#1A1A1A" align="left" class="mobile-pad"
+              style="background-color: #1A1A1A; padding: 26px 20px 12px 20px; border-bottom: 4px solid #E9531E; font-family: Arial, Helvetica, sans-serif;">
+
+              <!-- Headline -->
+              <h1 class="hero-title"
+                style="margin: 0 0 12px 0; font-size: 24px; line-height: 30px; font-weight: bold; color: #FFFFFF;">
+                Engineered Bolting Solutions for Critical Applications
+              </h1>
+
+              <!-- Body Text -->
+              <p style="margin: 0 0 12px 0; font-size: 14px; line-height: 21px; font-weight: bold; color: #FFFFFF;">
+                Welcome to PETTORQUE.
+              </p>
+              <p style="margin: 0 0 12px 0; font-size: 13px; line-height: 20px; color: #DDDDDD;">
+                We provide industrial bolting equipment engineered to meet the demands of critical fastening
+                applications. Our portfolio includes hydraulic torque wrenches, bolt tensioners, hydraulic power packs,
+                and accessories designed for demanding industrial operations.
+              </p>
+              <p style="margin: 0 0 18px 0; font-size: 13px; line-height: 20px; color: #DDDDDD;">
+                Our focus is on precision, dependable performance, and safe bolting practices across challenging
+                applications.
+              </p>
+
+              <!-- CTA Button -->
+              <table role="presentation" border="0" cellspacing="0" cellpadding="0" class="btn-full" style="margin: 0 0 24px 0;">
                 <tr>
-                  <!-- Left Text Content Column -->
-                  <td width="330" align="left" valign="middle" class="col-stack mobile-center"
-                    style="width: 330px; font-family: Arial, Helvetica, sans-serif; padding-right: 15px;">
-<br><br>
-                    <!-- Headline -->
-                    <h1 class="mobile-title"
-                      style="margin: 0 0 8px 0; font-size: 24px; line-height: 30px; font-weight: bold; color: #FFFFFF; text-transform: none;">
-                      Engineered Bolting Solutions for Critical Applications
-<br>
-
-                    </h1>
-
-                    <!-- Body Text -->
-                    <p class="mobile-subtitle"
-                      style="margin: 0 0 14px 0; font-size: 13px; line-height: 19px; color: #DDDDDD;">
-                      Welcome to PETTORQUE.
-                      <br><br>
-
-We provide industrial bolting equipment engineered to meet the demands of critical fastening applications. Our portfolio includes hydraulic torque wrenches, bolt tensioners, hydraulic power packs, and accessories designed for demanding industrial operations.
-<br><br>
-Our focus is on precision, dependable performance, and safe bolting practices across challenging applications.
-                    </p>
-
-                    <!-- CTA Button -->
-                    <table border="0" cellspacing="0" cellpadding="0" class="btn-full" style="margin: 0 0 20px 0;">
-                      <tr>
-                        <td align="center" bgcolor="#F4B400" class="btn-gold"
-                          style="border-radius: 4px; background-color: #F4B400; padding: 9px 22px;">
-                          <a href="https://pettorque.com/products/" target="_blank"
-                            style="font-family: Arial, Helvetica, sans-serif; font-size: 13px; font-weight: bold; color: #1A1A1A; text-decoration: none; display: inline-block; text-transform: uppercase; letter-spacing: 0.5px;">
-                            Explore Products &nbsp;&rarr;
-                          </a>
-                        </td>
-                      </tr>
-                    </table>
-
-                    <!-- Why Choose PETTORQUE Heading -->
-                    <h2 class="mobile-title"
-                      style="margin: 0 0 4px 0; font-size: 18px; line-height: 24px; font-weight: bold; color: #FFFFFF;">
-                      Why Choose PETTORQUE
-                    </h2>
-                    <div style="width: 40px; height: 3px; background-color: #F4B400; margin: 0 0 14px 0;"></div>
-
-                    <!-- 6 Feature Blocks in 2 Columns -->
-                    <table border="0" cellpadding="0" cellspacing="0" width="100%">
-                      <!-- Feature Row 1 -->
-                      <tr>
-                        <!-- Feature 1: 35+ Years Experience -->
-                        <td width="50%" valign="top" class="col-stack-padding"
-                          style="padding-bottom: 12px; padding-right: 6px;">
-                          <table border="0" cellpadding="0" cellspacing="0" width="100%">
-                            <tr>
-                              <td width="26" valign="top" style="padding-right: 8px;">
-                                <div
-                                  style="width: 24px; height: 24px; background-color: #2A2A2A; border-radius: 50%; text-align: center; line-height: 24px; font-size: 12px; color: #F4B400; font-weight: bold;">
-                                  &#10004;</div>
-                              </td>
-                              <td valign="top" style="font-family: Arial, Helvetica, sans-serif;">
-                                <h4 style="margin: 0 0 2px 0; font-size: 13px; font-weight: bold; color: #FFFFFF;">35+
-                                  Years Experience</h4>
-                                <p style="margin: 0; font-size: 11px; line-height: 15px; color: #CCCCCC;">Decades of
-                                  specialized engineering in heavy industrial bolting applications.</p>
-                              </td>
-                            </tr>
-                          </table>
-                        </td>
-
-                        <!-- Feature 2: High Precision -->
-                        <td width="50%" valign="top" class="col-stack-padding"
-                          style="padding-bottom: 12px; padding-left: 6px;">
-                          <table border="0" cellpadding="0" cellspacing="0" width="100%">
-                            <tr>
-                              <td width="26" valign="top" style="padding-right: 8px;">
-                                <div
-                                  style="width: 24px; height: 24px; background-color: #2A2A2A; border-radius: 50%; text-align: center; line-height: 24px; font-size: 12px; color: #F4B400; font-weight: bold;">
-                                  &#10004;</div>
-                              </td>
-                              <td valign="top" style="font-family: Arial, Helvetica, sans-serif;">
-                                <h4 style="margin: 0 0 2px 0; font-size: 13px; font-weight: bold; color: #FFFFFF;">High
-                                  Precision</h4>
-                                <p style="margin: 0; font-size: 11px; line-height: 15px; color: #CCCCCC;">Calibrated
-                                  torque accuracy &plusmn;3% for leak-free, critical joint integrity.</p>
-                              </td>
-                            </tr>
-                          </table>
-                        </td>
-                      </tr>
-
-                      <!-- Feature Row 2 -->
-                      <tr>
-                        <!-- Feature 3: ISO Quality -->
-                        <td width="50%" valign="top" class="col-stack-padding"
-                          style="padding-bottom: 12px; padding-right: 6px;">
-                          <table border="0" cellpadding="0" cellspacing="0" width="100%">
-                            <tr>
-                              <td width="26" valign="top" style="padding-right: 8px;">
-                                <div
-                                  style="width: 24px; height: 24px; background-color: #2A2A2A; border-radius: 50%; text-align: center; line-height: 24px; font-size: 12px; color: #F4B400; font-weight: bold;">
-                                  &#10004;</div>
-                              </td>
-                              <td valign="top" style="font-family: Arial, Helvetica, sans-serif;">
-                                <h4 style="margin: 0 0 2px 0; font-size: 13px; font-weight: bold; color: #FFFFFF;">ISO
-                                  Quality</h4>
-                                <p style="margin: 0; font-size: 11px; line-height: 15px; color: #CCCCCC;">ISO 9001:2015
-                                  certified design, testing, and manufacturing standards.</p>
-                              </td>
-                            </tr>
-                          </table>
-                        </td>
-
-                        <!-- Feature 4: Worldwide Supply -->
-                        <td width="50%" valign="top" class="col-stack-padding"
-                          style="padding-bottom: 12px; padding-left: 6px;">
-                          <table border="0" cellpadding="0" cellspacing="0" width="100%">
-                            <tr>
-                              <td width="26" valign="top" style="padding-right: 8px;">
-                                <div
-                                  style="width: 24px; height: 24px; background-color: #2A2A2A; border-radius: 50%; text-align: center; line-height: 24px; font-size: 12px; color: #F4B400; font-weight: bold;">
-                                  &#10004;</div>
-                              </td>
-                              <td valign="top" style="font-family: Arial, Helvetica, sans-serif;">
-                                <h4 style="margin: 0 0 2px 0; font-size: 13px; font-weight: bold; color: #FFFFFF;">
-                                  Worldwide Supply</h4>
-                                <p style="margin: 0; font-size: 11px; line-height: 15px; color: #CCCCCC;">Global
-                                  distribution network supplying projects across 40+ countries.</p>
-                              </td>
-                            </tr>
-                          </table>
-                        </td>
-                      </tr>
-
-                      <!-- Feature Row 3 -->
-                      <tr>
-                        <!-- Feature 5: Fast Delivery -->
-                        <td width="50%" valign="top" class="col-stack-padding"
-                          style="padding-bottom: 12px; padding-right: 6px;">
-                          <table border="0" cellpadding="0" cellspacing="0" width="100%">
-                            <tr>
-                              <td width="26" valign="top" style="padding-right: 8px;">
-                                <div
-                                  style="width: 24px; height: 24px; background-color: #2A2A2A; border-radius: 50%; text-align: center; line-height: 24px; font-size: 12px; color: #F4B400; font-weight: bold;">
-                                  &#10004;</div>
-                              </td>
-                              <td valign="top" style="font-family: Arial, Helvetica, sans-serif;">
-                                <h4 style="margin: 0 0 2px 0; font-size: 13px; font-weight: bold; color: #FFFFFF;">Fast
-                                  Delivery</h4>
-                                <p style="margin: 0; font-size: 11px; line-height: 15px; color: #CCCCCC;">Ready stock
-                                  inventory ensuring rapid dispatch &amp; minimal downtime.</p>
-                              </td>
-                            </tr>
-                          </table>
-                        </td>
-
-                        <!-- Feature 6: Expert Support -->
-                        <td width="50%" valign="top" class="col-stack-padding"
-                          style="padding-bottom: 12px; padding-left: 6px;">
-                          <table border="0" cellpadding="0" cellspacing="0" width="100%">
-                            <tr>
-                              <td width="26" valign="top" style="padding-right: 8px;">
-                                <div
-                                  style="width: 24px; height: 24px; background-color: #2A2A2A; border-radius: 50%; text-align: center; line-height: 24px; font-size: 12px; color: #F4B400; font-weight: bold;">
-                                  &#10004;</div>
-                              </td>
-                              <td valign="top" style="font-family: Arial, Helvetica, sans-serif;">
-                                <h4 style="margin: 0 0 2px 0; font-size: 13px; font-weight: bold; color: #FFFFFF;">
-                                  Expert Support</h4>
-                                <p style="margin: 0; font-size: 11px; line-height: 15px; color: #CCCCCC;">On-site
-                                  technical support, tool calibration, and maintenance advice.</p>
-                              </td>
-                            </tr>
-                          </table>
-                        </td>
-                      </tr>
-                    </table>
-
+                  <td align="center" bgcolor="#E9531E" class="btn-orange" style="border-radius: 4px; background-color: #E9531E;">
+                    <a href="https://pettorque.com/products/" target="_blank"
+                      style="display: block; padding: 12px 26px; font-family: Arial, Helvetica, sans-serif; font-size: 13px; font-weight: bold; color: #FFFFFF; text-decoration: none; text-transform: uppercase; letter-spacing: 0.5px;">
+                      Explore Products &nbsp;&rarr;
+                    </a>
                   </td>
+                </tr>
+              </table>
 
-                  <!-- Right Hero Image Column -->
+              <!-- Why Choose PETTORQUE Heading -->
+              <h2 style="margin: 0 0 6px 0; font-size: 18px; line-height: 24px; font-weight: bold; color: #FFFFFF;">
+                Why Choose PETTORQUE
+              </h2>
+              <div style="width: 40px; height: 3px; background-color: #E9531E; margin: 0 0 16px 0; font-size: 0; line-height: 0;">&nbsp;</div>
 
+              <!-- 6 Feature Blocks (2 columns on desktop, stacked on mobile) -->
+              <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
+                <tr>
+                  <td width="50%" valign="top" class="stack-col" style="width: 50%; padding: 0 8px 14px 0;">
+                    <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
+                      <tr>
+                        <td width="34" valign="top" style="width: 34px; padding-right: 10px;">
+                          <div
+                            style="width: 24px; height: 24px; background-color: #202A1F; border: 1px solid #4E7047; border-radius: 50%; text-align: center; line-height: 22px; font-size: 12px; color: #62A85B; font-weight: bold;">
+                            &#10004;</div>
+                        </td>
+                        <td valign="top" style="font-family: Arial, Helvetica, sans-serif;">
+                          <h4 style="margin: 0 0 3px 0; font-size: 13px; line-height: 17px; font-weight: bold; color: #FFFFFF;">35+ Years Experience</h4>
+                          <p style="margin: 0; font-size: 12px; line-height: 17px; color: #CCCCCC;">Decades of specialized engineering in heavy industrial bolting applications.</p>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                  <td width="50%" valign="top" class="stack-col" style="width: 50%; padding: 0 0 14px 8px;">
+                    <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
+                      <tr>
+                        <td width="34" valign="top" style="width: 34px; padding-right: 10px;">
+                          <div
+                            style="width: 24px; height: 24px; background-color: #202A1F; border: 1px solid #4E7047; border-radius: 50%; text-align: center; line-height: 22px; font-size: 12px; color: #62A85B; font-weight: bold;">
+                            &#10004;</div>
+                        </td>
+                        <td valign="top" style="font-family: Arial, Helvetica, sans-serif;">
+                          <h4 style="margin: 0 0 3px 0; font-size: 13px; line-height: 17px; font-weight: bold; color: #FFFFFF;">High Precision</h4>
+                          <p style="margin: 0; font-size: 12px; line-height: 17px; color: #CCCCCC;">Calibrated torque accuracy &plusmn;3% for leak-free, critical joint integrity.</p>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+                <tr>
+                  <td width="50%" valign="top" class="stack-col" style="width: 50%; padding: 0 8px 14px 0;">
+                    <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
+                      <tr>
+                        <td width="34" valign="top" style="width: 34px; padding-right: 10px;">
+                          <div
+                            style="width: 24px; height: 24px; background-color: #202A1F; border: 1px solid #4E7047; border-radius: 50%; text-align: center; line-height: 22px; font-size: 12px; color: #62A85B; font-weight: bold;">
+                            &#10004;</div>
+                        </td>
+                        <td valign="top" style="font-family: Arial, Helvetica, sans-serif;">
+                          <h4 style="margin: 0 0 3px 0; font-size: 13px; line-height: 17px; font-weight: bold; color: #FFFFFF;">ISO Quality</h4>
+                          <p style="margin: 0; font-size: 12px; line-height: 17px; color: #CCCCCC;">ISO 9001:2015 certified design, testing, and manufacturing standards.</p>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                  <td width="50%" valign="top" class="stack-col" style="width: 50%; padding: 0 0 14px 8px;">
+                    <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
+                      <tr>
+                        <td width="34" valign="top" style="width: 34px; padding-right: 10px;">
+                          <div
+                            style="width: 24px; height: 24px; background-color: #202A1F; border: 1px solid #4E7047; border-radius: 50%; text-align: center; line-height: 22px; font-size: 12px; color: #62A85B; font-weight: bold;">
+                            &#10004;</div>
+                        </td>
+                        <td valign="top" style="font-family: Arial, Helvetica, sans-serif;">
+                          <h4 style="margin: 0 0 3px 0; font-size: 13px; line-height: 17px; font-weight: bold; color: #FFFFFF;">Worldwide Supply</h4>
+                          <p style="margin: 0; font-size: 12px; line-height: 17px; color: #CCCCCC;">Global distribution network supplying projects across 40+ countries.</p>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+                <tr>
+                  <td width="50%" valign="top" class="stack-col" style="width: 50%; padding: 0 8px 14px 0;">
+                    <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
+                      <tr>
+                        <td width="34" valign="top" style="width: 34px; padding-right: 10px;">
+                          <div
+                            style="width: 24px; height: 24px; background-color: #202A1F; border: 1px solid #4E7047; border-radius: 50%; text-align: center; line-height: 22px; font-size: 12px; color: #62A85B; font-weight: bold;">
+                            &#10004;</div>
+                        </td>
+                        <td valign="top" style="font-family: Arial, Helvetica, sans-serif;">
+                          <h4 style="margin: 0 0 3px 0; font-size: 13px; line-height: 17px; font-weight: bold; color: #FFFFFF;">Fast Delivery</h4>
+                          <p style="margin: 0; font-size: 12px; line-height: 17px; color: #CCCCCC;">Ready stock inventory ensuring rapid dispatch &amp; minimal downtime.</p>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                  <td width="50%" valign="top" class="stack-col" style="width: 50%; padding: 0 0 14px 8px;">
+                    <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
+                      <tr>
+                        <td width="34" valign="top" style="width: 34px; padding-right: 10px;">
+                          <div
+                            style="width: 24px; height: 24px; background-color: #202A1F; border: 1px solid #4E7047; border-radius: 50%; text-align: center; line-height: 22px; font-size: 12px; color: #62A85B; font-weight: bold;">
+                            &#10004;</div>
+                        </td>
+                        <td valign="top" style="font-family: Arial, Helvetica, sans-serif;">
+                          <h4 style="margin: 0 0 3px 0; font-size: 13px; line-height: 17px; font-weight: bold; color: #FFFFFF;">Expert Support</h4>
+                          <p style="margin: 0; font-size: 12px; line-height: 17px; color: #CCCCCC;">On-site technical support, tool calibration, and maintenance advice.</p>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
                 </tr>
               </table>
             </td>
           </tr>
 
-          <!-- ==================== FEATURED PRODUCTS (3x2 GRID) ==================== -->
+          <!-- ==================== FEATURED PRODUCTS (3 per row desktop, 2 per row mobile) ==================== -->
           <tr>
-            <td bgcolor="#FFFFFF" style="padding: 22px 20px 18px 20px; border-bottom: 1px solid #E5E5E5;"
-              class="mobile-padding-inner">
-
-              <!-- Section Header -->
-              <table border="0" cellpadding="0" cellspacing="0" width="100%" style="margin-bottom: 16px;">
+            <td bgcolor="#FFF8F4" class="mobile-pad"
+              style="background-color: #FFF8F4; padding: 26px 15px 14px 15px; border-bottom: 1px solid #F0DFD5;">
+              <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" style="margin-bottom: 16px;">
                 <tr>
                   <td align="center" style="font-family: Arial, Helvetica, sans-serif;">
                     <span
-                      style="font-size: 11px; font-weight: bold; color: #F4B400; text-transform: uppercase; letter-spacing: 1.5px; display: block; margin-bottom: 2px;">CATALOG
-                      HIGHLIGHTS</span>
-                    <h2 class="mobile-title"
-                      style="margin: 0 0 4px 0; font-size: 20px; line-height: 26px; font-weight: bold; color: #1A1A1A;">
+                      style="font-size: 11px; font-weight: bold; color: #C83D0D; text-transform: uppercase; letter-spacing: 1.5px; display: block; margin-bottom: 4px;">Catalog Highlights</span>
+                    <h2 class="section-title" style="margin: 0 0 6px 0; font-size: 20px; line-height: 26px; font-weight: bold; color: #111111;">
                       Featured Products</h2>
-                    <div style="width: 45px; height: 3px; background-color: #F4B400; margin: 0 auto 6px auto;"></div>
-                    <p style="margin: 0; font-size: 13px; line-height: 18px; color: #666666; max-width: 480px;">
-                      High-performance industrial torque and tensioning equipment manufactured under stringent quality
-                      standards.
+                    <div style="width: 45px; height: 3px; background-color: #E9531E; margin: 0 auto 8px auto; font-size: 0; line-height: 0;">&nbsp;</div>
+                    <p style="margin: 0 auto; font-size: 13px; line-height: 19px; color: #333333; max-width: 480px;">
+                      High-performance industrial torque and tensioning equipment manufactured under stringent quality standards.
                     </p>
                   </td>
                 </tr>
               </table>
 
-              <!-- ROW 1 (Products 1, 2, 3) -->
-              <table border="0" cellpadding="0" cellspacing="0" width="100%" style="margin-bottom: 12px;">
+              <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
                 <tr>
-                  <!-- Product 1: Hydraulic Torque Wrench -->
-                  <td width="176" valign="top" class="col-third-stack" style="width: 176px; padding-bottom: 10px;">
-                    <table border="0" cellpadding="0" cellspacing="0" width="100%" class="product-card"
-                      style="background-color: #FFFFFF; border: 1px solid #E5E5E5; border-radius: 6px; overflow: hidden; height: 100%;">
-                      <tr>
-                        <td align="center" bgcolor="#FFFFFF"
-                          style="padding: 0; line-height: 0; text-align: center; background-color: #FFFFFF; overflow: hidden; height: 120px;">
-                          <a href="https://pettorque.com/product/ptcc-series-pipe-cold-cutting-bevelling-equipment/"
-                            target="_blank" style="display: block; text-decoration: none; width: 100%; height: 120px; overflow: hidden;">
-                            <img
-                              src="https://i0.wp.com/pettorque.com/wp-content/uploads/2024/08/Transparent-BKG.png?fit=1080%2C1080&ssl=1"
-                              alt="PTCC-series Pipe Cold Cutting &amp; Bevelling Equipment" width="176" height="120"
-                              style="display: block; width: 100%; max-width: 176px; height: 120px; object-fit: cover; object-position: center; border: 0; margin: 0 auto;" />
-                          </a>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td style="padding: 10px 10px;" align="left">
-                          <h3
-                            style="margin: 0 0 10px 0; font-size: 13px; line-height: 16px; font-weight: bold; color: #1A1A1A;">
-                            PTCC-series Pipe Cold Cutting &amp; Bevelling Equipment
-                          </h3>
-                          <table border="0" cellspacing="0" cellpadding="0" width="100%">
-                            <tr>
-                              <td align="center" bgcolor="#1A1A1A" class="btn-dark"
-                                style="border-radius: 4px; padding: 5px 8px;">
-                                <a href="https://pettorque.com/product/ptcc-series-pipe-cold-cutting-bevelling-equipment/"
-                                  target="_blank"
-                                  style="font-family: Arial, sans-serif; font-size: 10px; font-weight: bold; color: #F4B400; text-decoration: none; display: block; text-transform: uppercase;">
-                                  View Product
-                                </a>
-                              </td>
-                            </tr>
-                          </table>
-                        </td>
-                      </tr>
+                  <td align="center" valign="top" style="font-size: 0; text-align: center;">
+                    <!--[if mso]>
+                    <table role="presentation" border="0" cellspacing="0" cellpadding="0" width="100%">
+                    <tr>
+                    <td width="190" valign="top">
+                    <![endif]-->
+                    <div class="grid-col" style="display: inline-block; width: 100%; max-width: 190px; vertical-align: top;">
+                      <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
+                        <tr>
+                          <td valign="top" style="padding: 0 5px 12px 5px; font-size: 12px; line-height: 16px;">
+                            <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" class="product-card"
+                              style="background-color: #FFFFFF; border: 1px solid #ECD9CE; border-radius: 6px; overflow: hidden;">
+                              <tr>
+                                <td style="padding: 0; line-height: 0; font-size: 0;">
+                                  <a href="https://pettorque.com/product/ptcc-series-pipe-cold-cutting-bevelling-equipment/" target="_blank" style="display: block; text-decoration: none;">
+                                    <img src="https://i0.wp.com/pettorque.com/wp-content/uploads/2024/08/Transparent-BKG.png?resize=360,240&amp;ssl=1" alt="PTCC-series Pipe Cold Cutting &amp; Bevelling Equipment" width="174"
+                                      style="display: block; width: 100%; height: auto; border: 0; border-radius: 6px 6px 0 0;" />
+                                  </a>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td align="left" style="padding: 10px 10px 12px 10px; font-family: Arial, Helvetica, sans-serif;">
+                                  <h3 class="product-title" style="margin: 0 0 10px 0; min-height: 48px; font-size: 12px; line-height: 16px; font-weight: bold; color: #1A1A1A;">
+                                    PTCC-series Pipe Cold Cutting &amp; Bevelling Equipment
+                                  </h3>
+                                  <table role="presentation" border="0" cellspacing="0" cellpadding="0" width="100%">
+                                    <tr>
+                                      <td align="center" bgcolor="#1A1A1A" class="btn-dark" style="border-radius: 4px; background-color: #1A1A1A;">
+                                        <a href="https://pettorque.com/product/ptcc-series-pipe-cold-cutting-bevelling-equipment/" target="_blank"
+                                          style="display: block; padding: 7px 6px; font-family: Arial, Helvetica, sans-serif; font-size: 10px; font-weight: bold; color: #E9531E; text-decoration: none; text-transform: uppercase; letter-spacing: 0.5px;">
+                                          View Product
+                                        </a>
+                                      </td>
+                                    </tr>
+                                  </table>
+                                </td>
+                              </tr>
+                            </table>
+                          </td>
+                        </tr>
+                      </table>
+                    </div>
+                    <!--[if mso]>
+                    </td>
+                    <td width="190" valign="top">
+                    <![endif]-->
+                    <div class="grid-col" style="display: inline-block; width: 100%; max-width: 190px; vertical-align: top;">
+                      <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
+                        <tr>
+                          <td valign="top" style="padding: 0 5px 12px 5px; font-size: 12px; line-height: 16px;">
+                            <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" class="product-card"
+                              style="background-color: #FFFFFF; border: 1px solid #ECD9CE; border-radius: 6px; overflow: hidden;">
+                              <tr>
+                                <td style="padding: 0; line-height: 0; font-size: 0;">
+                                  <a href="https://pettorque.com/product/pfs-series-flange-spreader/" target="_blank" style="display: block; text-decoration: none;">
+                                    <img src="https://i0.wp.com/pettorque.com/wp-content/uploads/2024/08/pfs-series-flange-spreader.jpg?resize=360,240&amp;ssl=1" alt="PFS-series Flange Spreader" width="174"
+                                      style="display: block; width: 100%; height: auto; border: 0; border-radius: 6px 6px 0 0;" />
+                                  </a>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td align="left" style="padding: 10px 10px 12px 10px; font-family: Arial, Helvetica, sans-serif;">
+                                  <h3 class="product-title" style="margin: 0 0 10px 0; min-height: 48px; font-size: 12px; line-height: 16px; font-weight: bold; color: #1A1A1A;">
+                                    PFS-series Flange Spreader
+                                  </h3>
+                                  <table role="presentation" border="0" cellspacing="0" cellpadding="0" width="100%">
+                                    <tr>
+                                      <td align="center" bgcolor="#1A1A1A" class="btn-dark" style="border-radius: 4px; background-color: #1A1A1A;">
+                                        <a href="https://pettorque.com/product/pfs-series-flange-spreader/" target="_blank"
+                                          style="display: block; padding: 7px 6px; font-family: Arial, Helvetica, sans-serif; font-size: 10px; font-weight: bold; color: #E9531E; text-decoration: none; text-transform: uppercase; letter-spacing: 0.5px;">
+                                          View Product
+                                        </a>
+                                      </td>
+                                    </tr>
+                                  </table>
+                                </td>
+                              </tr>
+                            </table>
+                          </td>
+                        </tr>
+                      </table>
+                    </div>
+                    <!--[if mso]>
+                    </td>
+                    <td width="190" valign="top">
+                    <![endif]-->
+                    <div class="grid-col" style="display: inline-block; width: 100%; max-width: 190px; vertical-align: top;">
+                      <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
+                        <tr>
+                          <td valign="top" style="padding: 0 5px 12px 5px; font-size: 12px; line-height: 16px;">
+                            <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" class="product-card"
+                              style="background-color: #FFFFFF; border: 1px solid #ECD9CE; border-radius: 6px; overflow: hidden;">
+                              <tr>
+                                <td style="padding: 0; line-height: 0; font-size: 0;">
+                                  <a href="https://pettorque.com/product/pns-series-nut-splitter/" target="_blank" style="display: block; text-decoration: none;">
+                                    <img src="https://i0.wp.com/pettorque.com/wp-content/uploads/2024/08/pns-series-nut-splitter.jpg?resize=360,240&amp;ssl=1" alt="PNS-series Nut Splitter" width="174"
+                                      style="display: block; width: 100%; height: auto; border: 0; border-radius: 6px 6px 0 0;" />
+                                  </a>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td align="left" style="padding: 10px 10px 12px 10px; font-family: Arial, Helvetica, sans-serif;">
+                                  <h3 class="product-title" style="margin: 0 0 10px 0; min-height: 48px; font-size: 12px; line-height: 16px; font-weight: bold; color: #1A1A1A;">
+                                    PNS-series Nut Splitter
+                                  </h3>
+                                  <table role="presentation" border="0" cellspacing="0" cellpadding="0" width="100%">
+                                    <tr>
+                                      <td align="center" bgcolor="#1A1A1A" class="btn-dark" style="border-radius: 4px; background-color: #1A1A1A;">
+                                        <a href="https://pettorque.com/product/pns-series-nut-splitter/" target="_blank"
+                                          style="display: block; padding: 7px 6px; font-family: Arial, Helvetica, sans-serif; font-size: 10px; font-weight: bold; color: #E9531E; text-decoration: none; text-transform: uppercase; letter-spacing: 0.5px;">
+                                          View Product
+                                        </a>
+                                      </td>
+                                    </tr>
+                                  </table>
+                                </td>
+                              </tr>
+                            </table>
+                          </td>
+                        </tr>
+                      </table>
+                    </div>
+                    <!--[if mso]>
+                    </td>
+                    </tr>
+                    <tr>
+                    <td width="190" valign="top">
+                    <![endif]-->
+                    <div class="grid-col" style="display: inline-block; width: 100%; max-width: 190px; vertical-align: top;">
+                      <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
+                        <tr>
+                          <td valign="top" style="padding: 0 5px 12px 5px; font-size: 12px; line-height: 16px;">
+                            <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" class="product-card"
+                              style="background-color: #FFFFFF; border: 1px solid #ECD9CE; border-radius: 6px; overflow: hidden;">
+                              <tr>
+                                <td style="padding: 0; line-height: 0; font-size: 0;">
+                                  <a href="https://pettorque.com/product/pst-series/" target="_blank" style="display: block; text-decoration: none;">
+                                    <img src="https://i0.wp.com/pettorque.com/wp-content/uploads/2024/08/Pst-1.jpg?crop=0,46,100,44&amp;resize=360,240&amp;ssl=1" alt="PST-series Hydraulic Torque Wrench" width="174"
+                                      style="display: block; width: 100%; height: auto; border: 0; border-radius: 6px 6px 0 0;" />
+                                  </a>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td align="left" style="padding: 10px 10px 12px 10px; font-family: Arial, Helvetica, sans-serif;">
+                                  <h3 class="product-title" style="margin: 0 0 10px 0; min-height: 48px; font-size: 12px; line-height: 16px; font-weight: bold; color: #1A1A1A;">
+                                    PST-series Hydraulic Torque Wrench
+                                  </h3>
+                                  <table role="presentation" border="0" cellspacing="0" cellpadding="0" width="100%">
+                                    <tr>
+                                      <td align="center" bgcolor="#1A1A1A" class="btn-dark" style="border-radius: 4px; background-color: #1A1A1A;">
+                                        <a href="https://pettorque.com/product/pst-series/" target="_blank"
+                                          style="display: block; padding: 7px 6px; font-family: Arial, Helvetica, sans-serif; font-size: 10px; font-weight: bold; color: #E9531E; text-decoration: none; text-transform: uppercase; letter-spacing: 0.5px;">
+                                          View Product
+                                        </a>
+                                      </td>
+                                    </tr>
+                                  </table>
+                                </td>
+                              </tr>
+                            </table>
+                          </td>
+                        </tr>
+                      </table>
+                    </div>
+                    <!--[if mso]>
+                    </td>
+                    <td width="190" valign="top">
+                    <![endif]-->
+                    <div class="grid-col" style="display: inline-block; width: 100%; max-width: 190px; vertical-align: top;">
+                      <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
+                        <tr>
+                          <td valign="top" style="padding: 0 5px 12px 5px; font-size: 12px; line-height: 16px;">
+                            <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" class="product-card"
+                              style="background-color: #FFFFFF; border: 1px solid #ECD9CE; border-radius: 6px; overflow: hidden;">
+                              <tr>
+                                <td style="padding: 0; line-height: 0; font-size: 0;">
+                                  <a href="https://pettorque.com/product/shine-series-hydraulic-torque-wrench/" target="_blank" style="display: block; text-decoration: none;">
+                                    <img src="https://i0.wp.com/pettorque.com/wp-content/uploads/2024/08/shine-series-hydraulic-torque-wrench.jpg?crop=0,40,100,44&amp;resize=360,240&amp;ssl=1" alt="Shine-series Hydraulic Torque Wrench" width="174"
+                                      style="display: block; width: 100%; height: auto; border: 0; border-radius: 6px 6px 0 0;" />
+                                  </a>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td align="left" style="padding: 10px 10px 12px 10px; font-family: Arial, Helvetica, sans-serif;">
+                                  <h3 class="product-title" style="margin: 0 0 10px 0; min-height: 48px; font-size: 12px; line-height: 16px; font-weight: bold; color: #1A1A1A;">
+                                    Shine-series Hydraulic Torque Wrench
+                                  </h3>
+                                  <table role="presentation" border="0" cellspacing="0" cellpadding="0" width="100%">
+                                    <tr>
+                                      <td align="center" bgcolor="#1A1A1A" class="btn-dark" style="border-radius: 4px; background-color: #1A1A1A;">
+                                        <a href="https://pettorque.com/product/shine-series-hydraulic-torque-wrench/" target="_blank"
+                                          style="display: block; padding: 7px 6px; font-family: Arial, Helvetica, sans-serif; font-size: 10px; font-weight: bold; color: #E9531E; text-decoration: none; text-transform: uppercase; letter-spacing: 0.5px;">
+                                          View Product
+                                        </a>
+                                      </td>
+                                    </tr>
+                                  </table>
+                                </td>
+                              </tr>
+                            </table>
+                          </td>
+                        </tr>
+                      </table>
+                    </div>
+                    <!--[if mso]>
+                    </td>
+                    <td width="190" valign="top">
+                    <![endif]-->
+                    <div class="grid-col" style="display: inline-block; width: 100%; max-width: 190px; vertical-align: top;">
+                      <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
+                        <tr>
+                          <td valign="top" style="padding: 0 5px 12px 5px; font-size: 12px; line-height: 16px;">
+                            <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" class="product-card"
+                              style="background-color: #FFFFFF; border: 1px solid #ECD9CE; border-radius: 6px; overflow: hidden;">
+                              <tr>
+                                <td style="padding: 0; line-height: 0; font-size: 0;">
+                                  <a href="https://pettorque.com/product/plt-ol-series-hydraulic-torque-wrench/" target="_blank" style="display: block; text-decoration: none;">
+                                    <img src="https://i0.wp.com/pettorque.com/wp-content/uploads/2024/08/PLT-OL-series-Hydraulic-Torque-Wrench-3.jpg.jpeg?resize=360,240&amp;ssl=1" alt="PLT-OL-series Hydraulic Torque Wrench" width="174"
+                                      style="display: block; width: 100%; height: auto; border: 0; border-radius: 6px 6px 0 0;" />
+                                  </a>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td align="left" style="padding: 10px 10px 12px 10px; font-family: Arial, Helvetica, sans-serif;">
+                                  <h3 class="product-title" style="margin: 0 0 10px 0; min-height: 48px; font-size: 12px; line-height: 16px; font-weight: bold; color: #1A1A1A;">
+                                    PLT-OL-series Hydraulic Torque Wrench
+                                  </h3>
+                                  <table role="presentation" border="0" cellspacing="0" cellpadding="0" width="100%">
+                                    <tr>
+                                      <td align="center" bgcolor="#1A1A1A" class="btn-dark" style="border-radius: 4px; background-color: #1A1A1A;">
+                                        <a href="https://pettorque.com/product/plt-ol-series-hydraulic-torque-wrench/" target="_blank"
+                                          style="display: block; padding: 7px 6px; font-family: Arial, Helvetica, sans-serif; font-size: 10px; font-weight: bold; color: #E9531E; text-decoration: none; text-transform: uppercase; letter-spacing: 0.5px;">
+                                          View Product
+                                        </a>
+                                      </td>
+                                    </tr>
+                                  </table>
+                                </td>
+                              </tr>
+                            </table>
+                          </td>
+                        </tr>
+                      </table>
+                    </div>
+                    <!--[if mso]>
+                    </td>
+                    </tr>
                     </table>
-                  </td>
-
-                  <!-- Spacer -->
-                  <td width="10" class="mobile-hide" style="width: 10px;">&nbsp;</td>
-
-                  <!-- Product 2: Bolt Tensioner -->
-                  <td width="176" valign="top" class="col-third-stack" style="width: 176px; padding-bottom: 10px;">
-                    <table border="0" cellpadding="0" cellspacing="0" width="100%" class="product-card"
-                      style="background-color: #FFFFFF; border: 1px solid #E5E5E5; border-radius: 6px; overflow: hidden; height: 100%;">
-                      <tr>
-                        <td align="center" bgcolor="#FFFFFF"
-                          style="padding: 0; line-height: 0; text-align: center; background-color: #FFFFFF; overflow: hidden; height: 120px;">
-                          <a href="https://pettorque.com/product/pfs-series-flange-spreader/" target="_blank"
-                            style="display: block; text-decoration: none; width: 100%; height: 120px; overflow: hidden;">
-                            <img
-                              src="https://i0.wp.com/pettorque.com/wp-content/uploads/2024/08/pfs-series-flange-spreader.jpg?fit=4000%2C6000&ssl=1"
-                              alt="PFS-series Flange Spreader" width="176" height="120"
-                              style="display: block; width: 100%; max-width: 176px; height: 120px; object-fit: cover; object-position: center; border: 0; margin: 0 auto;" />
-                          </a>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td style="padding: 10px 10px;" align="left">
-                          <h3
-                            style="margin: 0 0 10px 0; font-size: 13px; line-height: 16px; font-weight: bold; color: #1A1A1A;">
-                            PFS-series Flange Spreader
-                          </h3>
-                          <table border="0" cellspacing="0" cellpadding="0" width="100%">
-                            <tr>
-                              <td align="center" bgcolor="#1A1A1A" class="btn-dark"
-                                style="border-radius: 4px; padding: 5px 8px;">
-                                <a href="https://pettorque.com/product/pfs-series-flange-spreader/" target="_blank"
-                                  style="font-family: Arial, sans-serif; font-size: 10px; font-weight: bold; color: #F4B400; text-decoration: none; display: block; text-transform: uppercase;">
-                                  View Product
-                                </a>
-                              </td>
-                            </tr>
-                          </table>
-                        </td>
-                      </tr>
-                    </table>
-                  </td>
-
-                  <!-- Spacer -->
-                  <td width="10" class="mobile-hide" style="width: 10px;">&nbsp;</td>
-
-                  <!-- Product 3: Hydraulic Power Pack -->
-                  <td width="176" valign="top" class="col-third-stack" style="width: 176px; padding-bottom: 10px;">
-                    <table border="0" cellpadding="0" cellspacing="0" width="100%" class="product-card"
-                      style="background-color: #FFFFFF; border: 1px solid #E5E5E5; border-radius: 6px; overflow: hidden; height: 100%;">
-                      <tr>
-                        <td align="center" bgcolor="#FFFFFF"
-                          style="padding: 0; line-height: 0; text-align: center; background-color: #FFFFFF; overflow: hidden; height: 120px;">
-                          <a href="https://pettorque.com/product/pns-series-nut-splitter/" target="_blank"
-                            style="display: block; text-decoration: none; width: 100%; height: 120px; overflow: hidden;">
-                            <img
-                              src="https://i0.wp.com/pettorque.com/wp-content/uploads/2024/08/pns-series-nut-splitter.jpg?fit=4000%2C6000&ssl=1"
-                              alt="PNS-series Nut Splitter" width="176" height="120"
-                              style="display: block; width: 100%; max-width: 176px; height: 120px; object-fit: cover; object-position: center; border: 0; margin: 0 auto;" />
-                          </a>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td style="padding: 10px 10px;" align="left">
-                          <h3
-                            style="margin: 0 0 10px 0; font-size: 13px; line-height: 16px; font-weight: bold; color: #1A1A1A;">
-                            PNS-series Nut Splitter
-                          </h3>
-                          <table border="0" cellspacing="0" cellpadding="0" width="100%">
-                            <tr>
-                              <td align="center" bgcolor="#1A1A1A" class="btn-dark"
-                                style="border-radius: 4px; padding: 5px 8px;">
-                                <a href="https://pettorque.com/product/pns-series-nut-splitter/" target="_blank"
-                                  style="font-family: Arial, sans-serif; font-size: 10px; font-weight: bold; color: #F4B400; text-decoration: none; display: block; text-transform: uppercase;">
-                                  View Product
-                                </a>
-                              </td>
-                            </tr>
-                          </table>
-                        </td>
-                      </tr>
-                    </table>
+                    <![endif]-->
                   </td>
                 </tr>
               </table>
-
-              <!-- ROW 2 (Products 4, 5, 6) -->
-              <table border="0" cellpadding="0" cellspacing="0" width="100%">
-                <tr>
-                  <!-- Product 4: Torque Multiplier -->
-                  <td width="176" valign="top" class="col-third-stack" style="width: 176px; padding-bottom: 10px;">
-                    <table border="0" cellpadding="0" cellspacing="0" width="100%" class="product-card"
-                      style="background-color: #FFFFFF; border: 1px solid #E5E5E5; border-radius: 6px; overflow: hidden; height: 100%;">
-                      <tr>
-                        <td align="center" bgcolor="#FFFFFF"
-                          style="padding: 0; line-height: 0; text-align: center; background-color: #FFFFFF; overflow: hidden; height: 120px;">
-                          <a href="https://pettorque.com/product/pst-series/" target="_blank"
-                            style="display: block; text-decoration: none; width: 100%; height: 120px; overflow: hidden;">
-                            <img
-                              src="https://i0.wp.com/pettorque.com/wp-content/uploads/2024/08/Pst-1.jpg?fit=1364%2C2048&ssl=1"
-                              alt="PST-series Hydraulic Torque Wrench" width="176" height="120"
-                              style="display: block; width: 100%; max-width: 176px; height: 120px; object-fit: cover; object-position: center 83%; border: 0; margin: 0 auto;" />
-                          </a>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td style="padding: 10px 10px;" align="left">
-                          <h3
-                            style="margin: 0 0 10px 0; font-size: 13px; line-height: 16px; font-weight: bold; color: #1A1A1A;">
-                            PST-series Hydraulic Torque Wrench
-                          </h3>
-                          <table border="0" cellspacing="0" cellpadding="0" width="100%">
-                            <tr>
-                              <td align="center" bgcolor="#1A1A1A" class="btn-dark"
-                                style="border-radius: 4px; padding: 5px 8px;">
-                                <a href="https://pettorque.com/product/pst-series/" target="_blank"
-                                  style="font-family: Arial, sans-serif; font-size: 10px; font-weight: bold; color: #F4B400; text-decoration: none; display: block; text-transform: uppercase;">
-                                  View Product
-                                </a>
-                              </td>
-                            </tr>
-                          </table>
-                        </td>
-                      </tr>
-                    </table>
-                  </td>
-
-                  <!-- Spacer -->
-                  <td width="10" class="mobile-hide" style="width: 10px;">&nbsp;</td>
-
-                  <!-- Product 5: Hydraulic Pump -->
-                  <td width="176" valign="top" class="col-third-stack" style="width: 176px; padding-bottom: 10px;">
-                    <table border="0" cellpadding="0" cellspacing="0" width="100%" class="product-card"
-                      style="background-color: #FFFFFF; border: 1px solid #E5E5E5; border-radius: 6px; overflow: hidden; height: 100%;">
-                      <tr>
-                        <td align="center" bgcolor="#FFFFFF"
-                          style="padding: 0; line-height: 0; text-align: center; background-color: #FFFFFF; overflow: hidden; height: 120px;">
-                          <a href="https://pettorque.com/product/shine-series-hydraulic-torque-wrench/" target="_blank"
-                            style="display: block; text-decoration: none; width: 100%; height: 120px; overflow: hidden;">
-                            <img
-                              src="https://i0.wp.com/pettorque.com/wp-content/uploads/2024/08/shine-series-hydraulic-torque-wrench.jpg?fit=4000%2C6000&ssl=1"
-                              alt="Shine-series Hydraulic Torque Wrench" width="176" height="120"
-                              style="display: block; width: 100%; max-width: 176px; height: 120px; object-fit: cover; object-position: center 70%; border: 0; margin: 0 auto;" />
-                          </a>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td style="padding: 10px 10px;" align="left">
-                          <h3
-                            style="margin: 0 0 10px 0; font-size: 13px; line-height: 16px; font-weight: bold; color: #1A1A1A;">
-                            Shine-series Hydraulic Torque Wrench
-                          </h3>
-                          <table border="0" cellspacing="0" cellpadding="0" width="100%">
-                            <tr>
-                              <td align="center" bgcolor="#1A1A1A" class="btn-dark"
-                                style="border-radius: 4px; padding: 5px 8px;">
-                                <a href="https://pettorque.com/product/shine-series-hydraulic-torque-wrench/"
-                                  target="_blank"
-                                  style="font-family: Arial, sans-serif; font-size: 10px; font-weight: bold; color: #F4B400; text-decoration: none; display: block; text-transform: uppercase;">
-                                  View Product
-                                </a>
-                              </td>
-                            </tr>
-                          </table>
-                        </td>
-                      </tr>
-                    </table>
-                  </td>
-
-                  <!-- Spacer -->
-                  <td width="10" class="mobile-hide" style="width: 10px;">&nbsp;</td>
-
-                  <!-- Product 6: Accessories -->
-                  <td width="176" valign="top" class="col-third-stack" style="width: 176px; padding-bottom: 10px;">
-                    <table border="0" cellpadding="0" cellspacing="0" width="100%" class="product-card"
-                      style="background-color: #FFFFFF; border: 1px solid #E5E5E5; border-radius: 6px; overflow: hidden; height: 100%;">
-                      <tr>
-                        <td align="center" bgcolor="#FFFFFF"
-                          style="padding: 0; line-height: 0; text-align: center; background-color: #FFFFFF; overflow: hidden; height: 120px;">
-                          <a href="https://pettorque.com/product/plt-ol-series-hydraulic-torque-wrench/"
-                            target="_blank" style="display: block; text-decoration: none; width: 100%; height: 120px; overflow: hidden;">
-                            <img
-                              src="https://i0.wp.com/pettorque.com/wp-content/uploads/2024/08/PLT-OL-series-Hydraulic-Torque-Wrench-3.jpg.jpeg?fit=4000%2C6000&ssl=1"
-                              alt="PLT-OL-series Hydraulic Torque Wrench" width="176" height="120"
-                              style="display: block; width: 100%; max-width: 176px; height: 120px; object-fit: cover; object-position: center; border: 0; margin: 0 auto;" />
-                          </a>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td style="padding: 10px 10px;" align="left">
-                          <h3
-                            style="margin: 0 0 10px 0; font-size: 13px; line-height: 16px; font-weight: bold; color: #1A1A1A;">
-                            PLT-OL-series Hydraulic Torque Wrench
-                          </h3>
-                          <table border="0" cellspacing="0" cellpadding="0" width="100%">
-                            <tr>
-                              <td align="center" bgcolor="#1A1A1A" class="btn-dark"
-                                style="border-radius: 4px; padding: 5px 8px;">
-                                <a href="https://pettorque.com/product/plt-ol-series-hydraulic-torque-wrench/"
-                                  target="_blank"
-                                  style="font-family: Arial, sans-serif; font-size: 10px; font-weight: bold; color: #F4B400; text-decoration: none; display: block; text-transform: uppercase;">
-                                  View Product
-                                </a>
-                              </td>
-                            </tr>
-                          </table>
-                        </td>
-                      </tr>
-                    </table>
-                  </td>
-                </tr>
-              </table>
-
             </td>
           </tr>
 
-          <!-- ==================== INDUSTRIES WE SERVE ==================== -->
+          <!-- ==================== INDUSTRIES WE SERVE (4 per row desktop, 2 per row mobile) ==================== -->
           <tr>
-            <td bgcolor="#FFFFFF" style="padding: 22px 20px 18px 20px;" class="mobile-padding-inner">
-              <table border="0" cellpadding="0" cellspacing="0" width="100%" style="margin-bottom: 16px;">
+            <td bgcolor="#FFF8F4" class="mobile-pad" style="background-color: #FFF8F4; padding: 26px 16px 18px 16px;">
+              <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" style="margin-bottom: 16px;">
                 <tr>
                   <td align="center" style="font-family: Arial, Helvetica, sans-serif;">
                     <span
-                      style="font-size: 11px; font-weight: bold; color: #F4B400; text-transform: uppercase; letter-spacing: 1.5px; display: block; margin-bottom: 2px;">APPLICATION
-                      SECTORS</span>
-                    <h2 class="mobile-title"
-                      style="margin: 0 0 4px 0; font-size: 20px; line-height: 26px; font-weight: bold; color: #1A1A1A;">
+                      style="font-size: 11px; font-weight: bold; color: #C83D0D; text-transform: uppercase; letter-spacing: 1.5px; display: block; margin-bottom: 4px;">Application Sectors</span>
+                    <h2 class="section-title" style="margin: 0 0 6px 0; font-size: 20px; line-height: 26px; font-weight: bold; color: #111111;">
                       Industries We Serve</h2>
-                    <div style="width: 45px; height: 3px; background-color: #F4B400; margin: 0 auto 6px auto;"></div>
-                    <p style="margin: 0; font-size: 13px; line-height: 18px; color: #666666; max-width: 460px;">
+                    <div style="width: 45px; height: 3px; background-color: #E9531E; margin: 0 auto 8px auto; font-size: 0; line-height: 0;">&nbsp;</div>
+                    <p style="margin: 0 auto; font-size: 13px; line-height: 19px; color: #333333; max-width: 480px;">
                       Trusted by heavy engineering leaders across mission-critical sectors.
                     </p>
                   </td>
                 </tr>
               </table>
 
-              <!-- 8 Industries Grid (4x2 on desktop, 2x4 on mobile) -->
-              <table border="0" cellpadding="0" cellspacing="0" width="100%">
-                <!-- Row 1: Oil & Gas, Power Plants, Wind Energy, Steel -->
+              <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
                 <tr>
-                  <!-- Industry 1 -->
-                  <td width="128" valign="top" class="col-half-stack" style="padding: 6px 4px; text-align: center;">
-                    <div
-                      style="background-color: #F9F9F9; border: 1px solid #EEEEEE; border-radius: 6px; padding: 10px 6px;">
-                      <div style="height: 26px; line-height: 26px; margin-bottom: 4px; text-align: center;">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="display: inline-block; vertical-align: middle;">
-                          <path d="M12 2.5C12 2.5 5.5 10 5.5 15C5.5 18.59 8.41 21.5 12 21.5C15.59 21.5 18.5 18.59 18.5 15C18.5 10 12 2.5 12 2.5Z" stroke="#1A1A1A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-                          <path d="M12 9C12 9 8.5 13 8.5 15.5C8.5 17.43 10.07 19 12 19C13.93 19 15.5 17.43 15.5 15.5C15.5 13 12 9 12 9Z" fill="#F4B400"/>
-                        </svg>
-                      </div>
-                      <div style="font-family: Arial, sans-serif; font-size: 11px; font-weight: bold; color: #1A1A1A;">
-                        Oil &amp; Gas</div>
+                  <td align="center" valign="top" style="font-size: 0; text-align: center;">
+                    <!--[if mso]>
+                    <table role="presentation" border="0" cellspacing="0" cellpadding="0" width="100%">
+                    <tr>
+                    <td width="142" valign="top">
+                    <![endif]-->
+                    <div class="grid-col" style="display: inline-block; width: 100%; max-width: 142px; vertical-align: top;">
+                      <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
+                        <tr>
+                          <td valign="top" style="padding: 0 4px 8px 4px; font-size: 12px; line-height: 16px;">
+                            <div
+                              style="background-color: #FFFFFF; border: 1px solid #ECD9CE; border-radius: 6px; padding: 10px 6px; box-shadow: 0 1px 4px rgba(233,83,30,0.03);">
+                              <div style="height: 26px; line-height: 26px; margin-bottom: 4px; text-align: center;">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="display: inline-block; vertical-align: middle;">
+                                  <path d="M12 2.5C12 2.5 5.5 10 5.5 15C5.5 18.59 8.41 21.5 12 21.5C15.59 21.5 18.5 18.59 18.5 15C18.5 10 12 2.5 12 2.5Z" stroke="#E9531E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                                  <path d="M12 9C12 9 8.5 13 8.5 15.5C8.5 17.43 10.07 19 12 19C13.93 19 15.5 17.43 15.5 15.5C15.5 13 12 9 12 9Z" fill="#E9531E"/>
+                                </svg>
+                              </div>
+                              <div style="font-family: Arial, sans-serif; font-size: 11px; font-weight: bold; color: #111111;">
+                                Oil &amp; Gas</div>
+                            </div>
+                          </td>
+                        </tr>
+                      </table>
                     </div>
-                  </td>
-                  <!-- Industry 2 -->
-                  <td width="128" valign="top" class="col-half-stack" style="padding: 6px 4px; text-align: center;">
-                    <div
-                      style="background-color: #F9F9F9; border: 1px solid #EEEEEE; border-radius: 6px; padding: 10px 6px;">
-                      <div style="height: 26px; line-height: 26px; margin-bottom: 4px; text-align: center;">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="display: inline-block; vertical-align: middle;">
-                          <path d="M6 21H18L16 7H8L6 21Z" stroke="#1A1A1A" stroke-width="1.8" stroke-linejoin="round"/>
-                          <path d="M8 7C8 5 9 3 10 3M12 7C12 4.5 13.5 3 14.5 3" stroke="#1A1A1A" stroke-width="1.5" stroke-linecap="round"/>
-                          <path d="M12.5 9.5L10 14H14L11.5 18.5" stroke="#F4B400" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                      </div>
-                      <div style="font-family: Arial, sans-serif; font-size: 11px; font-weight: bold; color: #1A1A1A;">
-                        Power Plants</div>
+                    <!--[if mso]>
+                    </td>
+                    <td width="142" valign="top">
+                    <![endif]-->
+                    <div class="grid-col" style="display: inline-block; width: 100%; max-width: 142px; vertical-align: top;">
+                      <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
+                        <tr>
+                          <td valign="top" style="padding: 0 4px 8px 4px; font-size: 12px; line-height: 16px;">
+                            <div
+                              style="background-color: #FFFFFF; border: 1px solid #ECD9CE; border-radius: 6px; padding: 10px 6px; box-shadow: 0 1px 4px rgba(233,83,30,0.03);">
+                              <div style="height: 26px; line-height: 26px; margin-bottom: 4px; text-align: center;">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="display: inline-block; vertical-align: middle;">
+                                  <path d="M6 21H18L16 7H8L6 21Z" stroke="#E9531E" stroke-width="1.8" stroke-linejoin="round"/>
+                                  <path d="M8 7C8 5 9 3 10 3M12 7C12 4.5 13.5 3 14.5 3" stroke="#E9531E" stroke-width="1.5" stroke-linecap="round"/>
+                                  <path d="M12.5 9.5L10 14H14L11.5 18.5" stroke="#E9531E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                              </div>
+                              <div style="font-family: Arial, sans-serif; font-size: 11px; font-weight: bold; color: #111111;">
+                                Power Plants</div>
+                            </div>
+                          </td>
+                        </tr>
+                      </table>
                     </div>
-                  </td>
-                  <!-- Industry 3 -->
-                  <td width="128" valign="top" class="col-half-stack" style="padding: 6px 4px; text-align: center;">
-                    <div
-                      style="background-color: #F9F9F9; border: 1px solid #EEEEEE; border-radius: 6px; padding: 10px 6px;">
-                      <div style="height: 26px; line-height: 26px; margin-bottom: 4px; text-align: center;">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="display: inline-block; vertical-align: middle;">
-                          <path d="M12 11V21M9 21H15" stroke="#1A1A1A" stroke-width="1.8" stroke-linecap="round"/>
-                          <path d="M12 11C11.2 7 11.5 3.5 12 2C12.5 3.5 12.8 7 12 11Z" fill="#1A1A1A"/>
-                          <path d="M12 11C8.5 11.8 5.5 13.5 4.2 14.2C5.2 14.9 8.5 14 12 11Z" fill="#1A1A1A"/>
-                          <path d="M12 11C14 13.5 16.5 16 17.8 16.8C18 15.5 16 13 12 11Z" fill="#1A1A1A"/>
-                          <circle cx="12" cy="11" r="2" fill="#F4B400"/>
-                        </svg>
-                      </div>
-                      <div style="font-family: Arial, sans-serif; font-size: 11px; font-weight: bold; color: #1A1A1A;">
-                        Wind Energy</div>
+                    <!--[if mso]>
+                    </td>
+                    <td width="142" valign="top">
+                    <![endif]-->
+                    <div class="grid-col" style="display: inline-block; width: 100%; max-width: 142px; vertical-align: top;">
+                      <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
+                        <tr>
+                          <td valign="top" style="padding: 0 4px 8px 4px; font-size: 12px; line-height: 16px;">
+                            <div
+                              style="background-color: #FFFFFF; border: 1px solid #ECD9CE; border-radius: 6px; padding: 10px 6px; box-shadow: 0 1px 4px rgba(233,83,30,0.03);">
+                              <div style="height: 26px; line-height: 26px; margin-bottom: 4px; text-align: center;">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="display: inline-block; vertical-align: middle;">
+                                  <path d="M12 11V21M9 21H15" stroke="#E9531E" stroke-width="1.8" stroke-linecap="round"/>
+                                  <path d="M12 11C11.2 7 11.5 3.5 12 2C12.5 3.5 12.8 7 12 11Z" fill="#E9531E"/>
+                                  <path d="M12 11C8.5 11.8 5.5 13.5 4.2 14.2C5.2 14.9 8.5 14 12 11Z" fill="#E9531E"/>
+                                  <path d="M12 11C14 13.5 16.5 16 17.8 16.8C18 15.5 16 13 12 11Z" fill="#E9531E"/>
+                                  <circle cx="12" cy="11" r="2" fill="#4E7047"/>
+                                </svg>
+                              </div>
+                              <div style="font-family: Arial, sans-serif; font-size: 11px; font-weight: bold; color: #111111;">
+                                Wind Energy</div>
+                            </div>
+                          </td>
+                        </tr>
+                      </table>
                     </div>
-                  </td>
-                  <!-- Industry 4 -->
-                  <td width="128" valign="top" class="col-half-stack" style="padding: 6px 4px; text-align: center;">
-                    <div
-                      style="background-color: #F9F9F9; border: 1px solid #EEEEEE; border-radius: 6px; padding: 10px 6px;">
-                      <div style="height: 26px; line-height: 26px; margin-bottom: 4px; text-align: center;">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="display: inline-block; vertical-align: middle;">
-                          <path d="M3 21H21M4 21V11L9 14V11L14 14V7L19 10V21" stroke="#1A1A1A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-                          <circle cx="8" cy="17" r="1.5" fill="#F4B400"/>
-                          <circle cx="14" cy="17" r="1.5" fill="#F4B400"/>
-                          <path d="M14 4V7M16.5 3V7" stroke="#F4B400" stroke-width="1.5" stroke-linecap="round"/>
-                        </svg>
-                      </div>
-                      <div style="font-family: Arial, sans-serif; font-size: 11px; font-weight: bold; color: #1A1A1A;">
-                        Steel Mills</div>
+                    <!--[if mso]>
+                    </td>
+                    <td width="142" valign="top">
+                    <![endif]-->
+                    <div class="grid-col" style="display: inline-block; width: 100%; max-width: 142px; vertical-align: top;">
+                      <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
+                        <tr>
+                          <td valign="top" style="padding: 0 4px 8px 4px; font-size: 12px; line-height: 16px;">
+                            <div
+                              style="background-color: #FFFFFF; border: 1px solid #ECD9CE; border-radius: 6px; padding: 10px 6px; box-shadow: 0 1px 4px rgba(233,83,30,0.03);">
+                              <div style="height: 26px; line-height: 26px; margin-bottom: 4px; text-align: center;">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="display: inline-block; vertical-align: middle;">
+                                  <path d="M3 21H21M4 21V11L9 14V11L14 14V7L19 10V21" stroke="#E9531E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                                  <circle cx="8" cy="17" r="1.5" fill="#E9531E"/>
+                                  <circle cx="14" cy="17" r="1.5" fill="#E9531E"/>
+                                  <path d="M14 4V7M16.5 3V7" stroke="#E9531E" stroke-width="1.5" stroke-linecap="round"/>
+                                </svg>
+                              </div>
+                              <div style="font-family: Arial, sans-serif; font-size: 11px; font-weight: bold; color: #111111;">
+                                Steel Mills</div>
+                            </div>
+                          </td>
+                        </tr>
+                      </table>
                     </div>
-                  </td>
-                </tr>
-
-                <!-- Row 2: Mining, Marine, Construction, Heavy Engineering -->
-                <tr>
-                  <!-- Industry 5 -->
-                  <td width="128" valign="top" class="col-half-stack" style="padding: 6px 4px; text-align: center;">
-                    <div
-                      style="background-color: #F9F9F9; border: 1px solid #EEEEEE; border-radius: 6px; padding: 10px 6px;">
-                      <div style="height: 26px; line-height: 26px; margin-bottom: 4px; text-align: center;">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="display: inline-block; vertical-align: middle;">
-                          <path d="M4 6.5C8 4 16 4 20 6.5" stroke="#1A1A1A" stroke-width="2.2" stroke-linecap="round"/>
-                          <path d="M12 5V21" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round"/>
-                          <rect x="10.5" y="4.5" width="3" height="3" rx="0.5" fill="#F4B400"/>
-                          <path d="M10 20H14" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round"/>
-                        </svg>
-                      </div>
-                      <div style="font-family: Arial, sans-serif; font-size: 11px; font-weight: bold; color: #1A1A1A;">
-                        Mining</div>
+                    <!--[if mso]>
+                    </td>
+                    </tr>
+                    <tr>
+                    <td width="142" valign="top">
+                    <![endif]-->
+                    <div class="grid-col" style="display: inline-block; width: 100%; max-width: 142px; vertical-align: top;">
+                      <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
+                        <tr>
+                          <td valign="top" style="padding: 0 4px 8px 4px; font-size: 12px; line-height: 16px;">
+                            <div
+                              style="background-color: #FFFFFF; border: 1px solid #ECD9CE; border-radius: 6px; padding: 10px 6px; box-shadow: 0 1px 4px rgba(233,83,30,0.03);">
+                              <div style="height: 26px; line-height: 26px; margin-bottom: 4px; text-align: center;">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="display: inline-block; vertical-align: middle;">
+                                  <path d="M4 6.5C8 4 16 4 20 6.5" stroke="#E9531E" stroke-width="2.2" stroke-linecap="round"/>
+                                  <path d="M12 5V21" stroke="#E9531E" stroke-width="2" stroke-linecap="round"/>
+                                  <rect x="10.5" y="4.5" width="3" height="3" rx="0.5" fill="#E9531E"/>
+                                  <path d="M10 20H14" stroke="#E9531E" stroke-width="2" stroke-linecap="round"/>
+                                </svg>
+                              </div>
+                              <div style="font-family: Arial, sans-serif; font-size: 11px; font-weight: bold; color: #111111;">
+                                Mining</div>
+                            </div>
+                          </td>
+                        </tr>
+                      </table>
                     </div>
-                  </td>
-                  <!-- Industry 6 -->
-                  <td width="128" valign="top" class="col-half-stack" style="padding: 6px 4px; text-align: center;">
-                    <div
-                      style="background-color: #F9F9F9; border: 1px solid #EEEEEE; border-radius: 6px; padding: 10px 6px;">
-                      <div style="height: 26px; line-height: 26px; margin-bottom: 4px; text-align: center;">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="display: inline-block; vertical-align: middle;">
-                          <circle cx="12" cy="5" r="2" stroke="#1A1A1A" stroke-width="1.8"/>
-                          <circle cx="12" cy="5" r="0.8" fill="#F4B400"/>
-                          <path d="M8 9H16" stroke="#1A1A1A" stroke-width="1.8" stroke-linecap="round"/>
-                          <path d="M12 7V19" stroke="#1A1A1A" stroke-width="1.8" stroke-linecap="round"/>
-                          <path d="M5 14C5 17.87 8.13 21 12 21C15.87 21 19 17.87 19 14" stroke="#1A1A1A" stroke-width="1.8" stroke-linecap="round"/>
-                          <path d="M4 14.5L5 13L6 14.5M18 14.5L19 13L20 14.5" stroke="#1A1A1A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                      </div>
-                      <div style="font-family: Arial, sans-serif; font-size: 11px; font-weight: bold; color: #1A1A1A;">
-                        Marine</div>
+                    <!--[if mso]>
+                    </td>
+                    <td width="142" valign="top">
+                    <![endif]-->
+                    <div class="grid-col" style="display: inline-block; width: 100%; max-width: 142px; vertical-align: top;">
+                      <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
+                        <tr>
+                          <td valign="top" style="padding: 0 4px 8px 4px; font-size: 12px; line-height: 16px;">
+                            <div
+                              style="background-color: #FFFFFF; border: 1px solid #ECD9CE; border-radius: 6px; padding: 10px 6px; box-shadow: 0 1px 4px rgba(233,83,30,0.03);">
+                              <div style="height: 26px; line-height: 26px; margin-bottom: 4px; text-align: center;">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="display: inline-block; vertical-align: middle;">
+                                  <circle cx="12" cy="5" r="2" stroke="#E9531E" stroke-width="1.8"/>
+                                  <circle cx="12" cy="5" r="0.8" fill="#E9531E"/>
+                                  <path d="M8 9H16" stroke="#E9531E" stroke-width="1.8" stroke-linecap="round"/>
+                                  <path d="M12 7V19" stroke="#E9531E" stroke-width="1.8" stroke-linecap="round"/>
+                                  <path d="M5 14C5 17.87 8.13 21 12 21C15.87 21 19 17.87 19 14" stroke="#E9531E" stroke-width="1.8" stroke-linecap="round"/>
+                                  <path d="M4 14.5L5 13L6 14.5M18 14.5L19 13L20 14.5" stroke="#E9531E" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                              </div>
+                              <div style="font-family: Arial, sans-serif; font-size: 11px; font-weight: bold; color: #111111;">
+                                Marine</div>
+                            </div>
+                          </td>
+                        </tr>
+                      </table>
                     </div>
-                  </td>
-                  <!-- Industry 7 -->
-                  <td width="128" valign="top" class="col-half-stack" style="padding: 6px 4px; text-align: center;">
-                    <div
-                      style="background-color: #F9F9F9; border: 1px solid #EEEEEE; border-radius: 6px; padding: 10px 6px;">
-                      <div style="height: 26px; line-height: 26px; margin-bottom: 4px; text-align: center;">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="display: inline-block; vertical-align: middle;">
-                          <path d="M6 21V5M9 21V5M4 21H11M6 10H9M6 15H9" stroke="#1A1A1A" stroke-width="1.6" stroke-linecap="round"/>
-                          <path d="M3 5H21" stroke="#1A1A1A" stroke-width="1.8" stroke-linecap="round"/>
-                          <path d="M7.5 2L3 5M7.5 2L15 5M7.5 2V5" stroke="#1A1A1A" stroke-width="1.5" stroke-linecap="round"/>
-                          <path d="M15 5V12" stroke="#1A1A1A" stroke-width="1.4"/>
-                          <rect x="13" y="12" width="4" height="3" rx="0.5" fill="#F4B400"/>
-                        </svg>
-                      </div>
-                      <div style="font-family: Arial, sans-serif; font-size: 11px; font-weight: bold; color: #1A1A1A;">
-                        Construction</div>
+                    <!--[if mso]>
+                    </td>
+                    <td width="142" valign="top">
+                    <![endif]-->
+                    <div class="grid-col" style="display: inline-block; width: 100%; max-width: 142px; vertical-align: top;">
+                      <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
+                        <tr>
+                          <td valign="top" style="padding: 0 4px 8px 4px; font-size: 12px; line-height: 16px;">
+                            <div
+                              style="background-color: #FFFFFF; border: 1px solid #ECD9CE; border-radius: 6px; padding: 10px 6px; box-shadow: 0 1px 4px rgba(233,83,30,0.03);">
+                              <div style="height: 26px; line-height: 26px; margin-bottom: 4px; text-align: center;">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="display: inline-block; vertical-align: middle;">
+                                  <path d="M6 21V5M9 21V5M4 21H11M6 10H9M6 15H9" stroke="#E9531E" stroke-width="1.6" stroke-linecap="round"/>
+                                  <path d="M3 5H21" stroke="#E9531E" stroke-width="1.8" stroke-linecap="round"/>
+                                  <path d="M7.5 2L3 5M7.5 2L15 5M7.5 2V5" stroke="#E9531E" stroke-width="1.5" stroke-linecap="round"/>
+                                  <path d="M15 5V12" stroke="#E9531E" stroke-width="1.4"/>
+                                  <rect x="13" y="12" width="4" height="3" rx="0.5" fill="#E9531E"/>
+                                </svg>
+                              </div>
+                              <div style="font-family: Arial, sans-serif; font-size: 11px; font-weight: bold; color: #111111;">
+                                Construction</div>
+                            </div>
+                          </td>
+                        </tr>
+                      </table>
                     </div>
-                  </td>
-                  <!-- Industry 8 -->
-                  <td width="128" valign="top" class="col-half-stack" style="padding: 6px 4px; text-align: center;">
-                    <div
-                      style="background-color: #F9F9F9; border: 1px solid #EEEEEE; border-radius: 6px; padding: 10px 6px;">
-                      <div style="height: 26px; line-height: 26px; margin-bottom: 4px; text-align: center;">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="display: inline-block; vertical-align: middle;">
-                          <path d="M12 8.5C10.07 8.5 8.5 10.07 8.5 12C8.5 13.93 10.07 15.5 12 15.5C13.93 15.5 15.5 13.93 15.5 12C15.5 10.07 13.93 8.5 12 8.5Z" stroke="#1A1A1A" stroke-width="1.8"/>
-                          <path d="M19.4 13.5C19.45 13 19.5 12.5 19.5 12C19.5 11.5 19.45 11 19.4 10.5L21.5 8.9C21.7 8.7 21.8 8.4 21.6 8.2L19.6 4.7C19.5 4.5 19.2 4.4 19 4.5L16.5 5.5C16 5.1 15.4 4.8 14.8 4.6L14.4 2C14.4 1.7 14.1 1.5 13.9 1.5H9.9C9.6 1.5 9.4 1.7 9.4 2L9 4.6C8.4 4.8 7.8 5.1 7.3 5.5L4.8 4.5C4.6 4.4 4.3 4.5 4.2 4.7L2.2 8.2C2 8.4 2.1 8.7 2.3 8.9L4.4 10.5C4.35 11 4.3 11.5 4.3 12C4.3 12.5 4.35 13 4.4 13.5L2.3 15.1C2.1 15.3 2 15.6 2.2 15.8L4.2 19.3C4.3 19.5 4.6 19.6 4.8 19.5L7.3 18.5C7.8 18.9 8.4 19.2 9 19.4L9.4 22C9.4 22.3 9.7 22.5 9.9 22.5H13.9C14.1 22.5 14.4 22.3 14.4 22L14.8 19.4C15.4 19.2 16 18.9 16.5 18.5L19 19.5C19.2 19.6 19.5 19.5 19.6 19.3L21.6 15.8C21.8 15.6 21.7 15.3 21.5 15.1L19.4 13.5Z" stroke="#1A1A1A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-                          <circle cx="12" cy="12" r="1.5" fill="#F4B400"/>
-                        </svg>
-                      </div>
-                      <div style="font-family: Arial, sans-serif; font-size: 11px; font-weight: bold; color: #1A1A1A;">
-                        Heavy Eng.</div>
+                    <!--[if mso]>
+                    </td>
+                    <td width="142" valign="top">
+                    <![endif]-->
+                    <div class="grid-col" style="display: inline-block; width: 100%; max-width: 142px; vertical-align: top;">
+                      <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
+                        <tr>
+                          <td valign="top" style="padding: 0 4px 8px 4px; font-size: 12px; line-height: 16px;">
+                            <div
+                              style="background-color: #FFFFFF; border: 1px solid #ECD9CE; border-radius: 6px; padding: 10px 6px; box-shadow: 0 1px 4px rgba(233,83,30,0.03);">
+                              <div style="height: 26px; line-height: 26px; margin-bottom: 4px; text-align: center;">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="display: inline-block; vertical-align: middle;">
+                                  <path d="M12 8.5C10.07 8.5 8.5 10.07 8.5 12C8.5 13.93 10.07 15.5 12 15.5C13.93 15.5 15.5 13.93 15.5 12C15.5 10.07 13.93 8.5 12 8.5Z" stroke="#E9531E" stroke-width="1.8"/>
+                                  <path d="M19.4 13.5C19.45 13 19.5 12.5 19.5 12C19.5 11.5 19.45 11 19.4 10.5L21.5 8.9C21.7 8.7 21.8 8.4 21.6 8.2L19.6 4.7C19.5 4.5 19.2 4.4 19 4.5L16.5 5.5C16 5.1 15.4 4.8 14.8 4.6L14.4 2C14.4 1.7 14.1 1.5 13.9 1.5H9.9C9.6 1.5 9.4 1.7 9.4 2L9 4.6C8.4 4.8 7.8 5.1 7.3 5.5L4.8 4.5C4.6 4.4 4.3 4.5 4.2 4.7L2.2 8.2C2 8.4 2.1 8.7 2.3 8.9L4.4 10.5C4.35 11 4.3 11.5 4.3 12C4.3 12.5 4.35 13 4.4 13.5L2.3 15.1C2.1 15.3 2 15.6 2.2 15.8L4.2 19.3C4.3 19.5 4.6 19.6 4.8 19.5L7.3 18.5C7.8 18.9 8.4 19.2 9 19.4L9.4 22C9.4 22.3 9.7 22.5 9.9 22.5H13.9C14.1 22.5 14.4 22.3 14.4 22L14.8 19.4C15.4 19.2 16 18.9 16.5 18.5L19 19.5C19.2 19.6 19.5 19.5 19.6 19.3L21.6 15.8C21.8 15.6 21.7 15.3 21.5 15.1L19.4 13.5Z" stroke="#E9531E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                                  <circle cx="12" cy="12" r="1.5" fill="#E9531E"/>
+                                </svg>
+                              </div>
+                              <div style="font-family: Arial, sans-serif; font-size: 11px; font-weight: bold; color: #111111;">
+                                Heavy Eng.</div>
+                            </div>
+                          </td>
+                        </tr>
+                      </table>
                     </div>
-                  </td>
-                </tr>
-              </table>
-
-            </td>
-          </tr>
-
-          <!-- ==================== CALL TO ACTION SECTION ==================== -->
-          <tr>
-            <td bgcolor="#1A1A1A" style="background-color: #1A1A1A; padding: 20px 20px; border-top: 4px solid #F4B400;"
-              class="mobile-padding-inner">
-              <table border="0" cellpadding="0" cellspacing="0" width="100%">
-                <tr>
-                  <td align="center" style="font-family: Arial, Helvetica, sans-serif;">
-
-
-                    <!-- Bulletproof CTA Button -->
-                    <table border="0" cellspacing="0" cellpadding="0" class="btn-full" style="margin: 0 auto;">
-                      <tr>
-                        <td align="center" bgcolor="#F4B400" class="btn-gold"
-                          style="border-radius: 4px; background-color: #F4B400; padding: 10px 24px;">
-                          <a href="https://pettorque.com/contact/" target="_blank"
-                            style="font-family: Arial, Helvetica, sans-serif; font-size: 14px; font-weight: bold; color: #1A1A1A; text-decoration: none; display: inline-block; text-transform: uppercase; letter-spacing: 0.5px;">
-                            Request a Quote &nbsp;&rarr;
-                          </a>
-                        </td>
-                      </tr>
+                    <!--[if mso]>
+                    </td>
+                    </tr>
                     </table>
+                    <![endif]-->
                   </td>
                 </tr>
               </table>
             </td>
           </tr>
 
-          <!-- ==================== CONTACT SECTION ==================== -->
+          <!-- ==================== CALL TO ACTION ==================== -->
           <tr>
-            <td bgcolor="#F8F9FA"
-              style="background-color: #F8F9FA; padding: 18px 20px; border-top: 1px solid #E5E5E5; border-bottom: 1px solid #E5E5E5;"
-              class="mobile-padding-inner">
-              <table border="0" cellpadding="0" cellspacing="0" width="100%">
+            <td bgcolor="#1A1A1A" align="center" class="mobile-pad"
+              style="background-color: #1A1A1A; padding: 22px 20px; border-top: 4px solid #E9531E;">
+              <table role="presentation" border="0" cellspacing="0" cellpadding="0" class="btn-full" style="margin: 0 auto;">
                 <tr>
-                  <td align="center" style="font-family: Arial, Helvetica, sans-serif; padding-bottom: 12px;">
-                    <h3 style="margin: 0 0 3px 0; font-size: 16px; font-weight: bold; color: #1A1A1A;">Direct Contact
-                      Information</h3>
-                    <p style="margin: 0; font-size: 12px; color: #666666;">Get in touch with PETTORQUE sales engineers
-                      directly.</p>
+                  <td align="center" bgcolor="#E9531E" class="btn-orange" style="border-radius: 4px; background-color: #E9531E;">
+                    <a href="https://pettorque.com/contact/" target="_blank"
+                      style="display: block; padding: 12px 28px; font-family: Arial, Helvetica, sans-serif; font-size: 14px; font-weight: bold; color: #FFFFFF; text-decoration: none; text-transform: uppercase; letter-spacing: 0.5px;">
+                      Request a Quote &nbsp;&rarr;
+                    </a>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- ==================== CONTACT SECTION (4 per row desktop, 2 per row mobile) ==================== -->
+          <tr>
+            <td bgcolor="#FFF4EE" class="mobile-pad"
+              style="background-color: #FFF4EE; padding: 22px 16px 14px 16px; border-bottom: 1px solid #F0DFD5;">
+              <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
+                <tr>
+                  <td align="center" style="font-family: Arial, Helvetica, sans-serif; padding-bottom: 14px;">
+                    <h3 style="margin: 0 0 4px 0; font-size: 16px; line-height: 22px; font-weight: bold; color: #111111;">
+                      Direct Contact Information</h3>
+                    <p style="margin: 0; font-size: 12px; line-height: 18px; color: #333333;">Get in touch with PETTORQUE
+                      sales engineers directly.</p>
                   </td>
                 </tr>
               </table>
 
-              <table border="0" cellpadding="0" cellspacing="0" width="100%">
+              <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
                 <tr>
-                  <!-- Phone -->
-                  <td width="25%" valign="top" style="padding: 0 4px 8px 4px; text-align: center; vertical-align: top;">
-                    <div
-                      style="background-color: #FFFFFF; border: 1px solid #E0E0E0; border-radius: 6px; padding: 10px 4px; text-align: center;">
-                      <div style="font-size: 18px; margin-bottom: 3px;">&#128222;</div>
-                      <div
-                        style="font-family: Arial, sans-serif; font-size: 10px; text-transform: uppercase; color: #888888; font-weight: bold;">
-                        PHONE</div>
-                      <div
-                        style="font-family: Arial, sans-serif; font-size: 11px; font-weight: bold; color: #1A1A1A; margin-top: 2px;">
-                        <a href="tel:+919819457592" style="color: #1A1A1A; text-decoration: none;">+91 98194 57592</a>
-                      </div>
+                  <td align="center" valign="top" style="font-size: 0; text-align: center;">
+                    <!--[if mso]>
+                    <table role="presentation" border="0" cellspacing="0" cellpadding="0" width="100%">
+                    <tr>
+                    <td width="142" valign="top">
+                    <![endif]-->
+                    <div class="grid-col" style="display: inline-block; width: 100%; max-width: 142px; vertical-align: top;">
+                      <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
+                        <tr>
+                          <td valign="top" style="padding: 0 4px 8px 4px; font-size: 12px; line-height: 16px;">
+                            <div
+                              style="background-color: #FFFFFF; border: 1px solid #ECD9CE; border-radius: 6px; padding: 10px 4px; text-align: center; box-shadow: 0 1px 4px rgba(233,83,30,0.03);">
+                              <div style="font-size: 18px; margin-bottom: 3px;">&#128222;</div>
+                              <div
+                                style="font-family: Arial, sans-serif; font-size: 10px; text-transform: uppercase; color: #555555; font-weight: bold;">
+                                PHONE</div>
+                              <div
+                                style="font-family: Arial, sans-serif; font-size: 11px; font-weight: bold; color: #111111; margin-top: 2px;">
+                                <a href="tel:+919819457592" style="color: #111111; text-decoration: none;">+91 98194 57592</a>
+                              </div>
+                            </div>
+                          </td>
+                        </tr>
+                      </table>
                     </div>
-                  </td>
-
-                  <!-- WhatsApp -->
-                  <td width="25%" valign="top" style="padding: 0 4px 8px 4px; text-align: center; vertical-align: top;">
-                    <div
-                      style="background-color: #FFFFFF; border: 1px solid #E0E0E0; border-radius: 6px; padding: 10px 4px; text-align: center;">
-                      <div style="font-size: 18px; margin-bottom: 3px;">&#128172;</div>
-                      <div
-                        style="font-family: Arial, sans-serif; font-size: 10px; text-transform: uppercase; color: #888888; font-weight: bold;">
-                        WHATSAPP</div>
-                      <div
-                        style="font-family: Arial, sans-serif; font-size: 11px; font-weight: bold; color: #1A1A1A; margin-top: 2px;">
-                        <a href="https://wa.me/918169883217" target="_blank"
-                          style="color: #1A1A1A; text-decoration: none;">+91 81698 83217</a>
-                      </div>
+                    <!--[if mso]>
+                    </td>
+                    <td width="142" valign="top">
+                    <![endif]-->
+                    <div class="grid-col" style="display: inline-block; width: 100%; max-width: 142px; vertical-align: top;">
+                      <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
+                        <tr>
+                          <td valign="top" style="padding: 0 4px 8px 4px; font-size: 12px; line-height: 16px;">
+                            <div
+                              style="background-color: #FFFFFF; border: 1px solid #ECD9CE; border-radius: 6px; padding: 10px 4px; text-align: center; box-shadow: 0 1px 4px rgba(233,83,30,0.03);">
+                              <div style="font-size: 18px; margin-bottom: 3px;">&#128172;</div>
+                              <div
+                                style="font-family: Arial, sans-serif; font-size: 10px; text-transform: uppercase; color: #555555; font-weight: bold;">
+                                WHATSAPP</div>
+                              <div
+                                style="font-family: Arial, sans-serif; font-size: 11px; font-weight: bold; color: #111111; margin-top: 2px;">
+                                <a href="https://wa.me/918169883217" target="_blank"
+                                  style="color: #111111; text-decoration: none;">+91 81698 83217</a>
+                              </div>
+                            </div>
+                          </td>
+                        </tr>
+                      </table>
                     </div>
-                  </td>
-
-                  <!-- Email -->
-                  <td width="25%" valign="top" style="padding: 0 4px 8px 4px; text-align: center; vertical-align: top;">
-                    <div
-                      style="background-color: #FFFFFF; border: 1px solid #E0E0E0; border-radius: 6px; padding: 10px 4px; text-align: center;">
-                      <div style="font-size: 18px; margin-bottom: 3px;">&#9993;&#65039;</div>
-                      <div
-                        style="font-family: Arial, sans-serif; font-size: 10px; text-transform: uppercase; color: #888888; font-weight: bold;">
-                        EMAIL</div>
-                      <div
-                        style="font-family: Arial, sans-serif; font-size: 10px; font-weight: bold; color: #1A1A1A; margin-top: 2px;">
-                        <a href="mailto:marketing@pettorque.com"
-                          style="color: #1A1A1A; text-decoration: none;">marketing@pettorque.com</a>
-                      </div>
+                    <!--[if mso]>
+                    </td>
+                    <td width="142" valign="top">
+                    <![endif]-->
+                    <div class="grid-col" style="display: inline-block; width: 100%; max-width: 142px; vertical-align: top;">
+                      <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
+                        <tr>
+                          <td valign="top" style="padding: 0 4px 8px 4px; font-size: 12px; line-height: 16px;">
+                            <div
+                              style="background-color: #FFFFFF; border: 1px solid #ECD9CE; border-radius: 6px; padding: 10px 4px; text-align: center; box-shadow: 0 1px 4px rgba(233,83,30,0.03);">
+                              <div style="font-size: 18px; margin-bottom: 3px;">&#9993;&#65039;</div>
+                              <div
+                                style="font-family: Arial, sans-serif; font-size: 10px; text-transform: uppercase; color: #555555; font-weight: bold;">
+                                EMAIL</div>
+                              <div
+                                style="font-family: Arial, sans-serif; font-size: 10px; font-weight: bold; color: #111111; margin-top: 2px; word-break: break-all;">
+                                <a href="mailto:marketing@pettorque.com"
+                                  style="color: #111111; text-decoration: none;">marketing@pettorque.com</a>
+                              </div>
+                            </div>
+                          </td>
+                        </tr>
+                      </table>
                     </div>
-                  </td>
-
-                  <!-- Website -->
-                  <td width="25%" valign="top" style="padding: 0 4px 8px 4px; text-align: center; vertical-align: top;">
-                    <div
-                      style="background-color: #FFFFFF; border: 1px solid #E0E0E0; border-radius: 6px; padding: 10px 4px; text-align: center;">
-                      <div style="font-size: 18px; margin-bottom: 3px;">&#127760;</div>
-                      <div
-                        style="font-family: Arial, sans-serif; font-size: 10px; text-transform: uppercase; color: #888888; font-weight: bold;">
-                        WEBSITE</div>
-                      <div
-                        style="font-family: Arial, sans-serif; font-size: 11px; font-weight: bold; color: #1A1A1A; margin-top: 2px;">
-                        <a href="https://pettorque.com/" target="_blank"
-                          style="color: #F4B400; text-decoration: none;">pettorque.com</a>
-                      </div>
+                    <!--[if mso]>
+                    </td>
+                    <td width="142" valign="top">
+                    <![endif]-->
+                    <div class="grid-col" style="display: inline-block; width: 100%; max-width: 142px; vertical-align: top;">
+                      <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
+                        <tr>
+                          <td valign="top" style="padding: 0 4px 8px 4px; font-size: 12px; line-height: 16px;">
+                            <div
+                              style="background-color: #FFFFFF; border: 1px solid #ECD9CE; border-radius: 6px; padding: 10px 4px; text-align: center; box-shadow: 0 1px 4px rgba(233,83,30,0.03);">
+                              <div style="font-size: 18px; margin-bottom: 3px;">&#127760;</div>
+                              <div
+                                style="font-family: Arial, sans-serif; font-size: 10px; text-transform: uppercase; color: #555555; font-weight: bold;">
+                                WEBSITE</div>
+                              <div
+                                style="font-family: Arial, sans-serif; font-size: 11px; font-weight: bold; color: #111111; margin-top: 2px;">
+                                <a href="https://pettorque.com/" target="_blank"
+                                  style="color: #C83D0D; font-weight: bold; text-decoration: none;">pettorque.com</a>
+                              </div>
+                            </div>
+                          </td>
+                        </tr>
+                      </table>
                     </div>
+                    <!--[if mso]>
+                    </td>
+                    </tr>
+                    </table>
+                    <![endif]-->
                   </td>
                 </tr>
               </table>
-
             </td>
           </tr>
 
           <!-- ==================== FOOTER ==================== -->
-
-    <!-- Social Media Links (Bulletproof Table Buttons) -->
-    <tr>
-      <td align="center" style="padding-bottom: 16px;">
-        <table border="0" cellpadding="0" cellspacing="0" align="center">
           <tr>
-
+            <td bgcolor="#FFF4EE" align="center" class="mobile-pad"
+              style="background-color: #FFF4EE; padding: 16px 20px 22px 20px; font-family: Arial, Helvetica, sans-serif;">
+              <p style="margin: 0 0 4px 0; font-size: 11px; line-height: 16px; color: #555555;">
+                &copy; 2026 PETTORQUE. All Rights Reserved.
+              </p>
+              <p style="margin: 0; font-size: 10px; line-height: 15px; color: #777777;">
+                Engineered Bolting Solutions for Critical Applications | ISO 9001 Certified
+              </p>
+            </td>
           </tr>
+
         </table>
+        <!--[if mso]>
+        </td>
+        </tr>
+        </table>
+        <![endif]-->
+
       </td>
     </tr>
-
-    <!-- Divider Line -->
-    <tr>
-      <td style="border-top: 1px solid #222222; padding-bottom: 12px;"></td>
-    </tr>
-
-   
-
-    <!-- Copyright -->
-    <tr>
-      <td align="center" style="font-family: Arial, Helvetica, sans-serif; font-size: 10px; color: #555555;">
-        &copy; 2026 PETTORQUE. All Rights Reserved.
-      </td>
-    </tr>
-
-<br>
-    <!-- Divider Line -->
-    <tr>
-      <td style="border-top: 1px solid #222222; padding-bottom: 12px;"></td>
-    </tr>
-
-  </table>
-  </td>
-  </tr>
-
-
   </table>
 
 </body>
